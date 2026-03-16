@@ -3,24 +3,23 @@ kind: EC2NodeClass
 metadata:
   name: default-nodeclass
 spec:
-  # IAM instance profile for the nodes
   instanceProfile: nodekarpenter-role
 
-  # AMI selection using SSM parameter (dynamic, recommended)
+  # AMI selection using SSM
   amiSelectorTerms:
     - ssmParameter: "/aws/service/eks/optimized-ami/1.35/amazon-linux-2023/x86_64/standard/recommended/image_id"
 
-  # Subnets Karpenter can launch nodes into
+  # Specify amiFamily since we are not using alias
+  amiFamily: AL2   # Amazon Linux 2 / AL2023 (AL2 works for AL2023 too)
+
   subnetSelectorTerms:
     - tags:
         karpenter.sh/discovery: cluster
 
-  # Security groups Karpenter nodes should attach to
   securityGroupSelectorTerms:
     - tags:
         karpenter.sh/discovery: cluster
 
-  # Optional EC2 metadata options
   metadataOptions:
     httpEndpoint: enabled
     httpTokens: required
