@@ -3,8 +3,9 @@ kind: EC2NodeClass
 metadata:
   name: default-nodeclass
 spec:
-  amiFamily: AL2023
-  role: nodekarpenter-role
+  instanceProfile: nodekarpenter-role
+
+  clusterCIDR: 172.31.0.0/16
 
   amiSelectorTerms:
     - alias: al2023@latest
