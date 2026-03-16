@@ -6,7 +6,7 @@ spec:
   instanceProfile: nodekarpenter-role
 
   amiSelectorTerms:
-    - alias: al2023@latest
+    - ami: ami-0a3b1648f5deb673f
 
   subnetSelectorTerms:
     - tags:
